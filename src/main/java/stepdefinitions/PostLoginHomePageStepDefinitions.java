@@ -51,7 +51,12 @@ public class PostLoginHomePageStepDefinitions {
 
     @When("the user mouseover {string} item")
     public void the_user_mouseover_item(String itemName) {
-        dashboard.checkItem(itemName);
+        dashboard.moveToItem(itemName);
+    }
+
+    @Then("the user should see {string}")
+    public void the_user_should_see(String item) {
+        dashboard.checkItem(item);
     }
 
     @Then("the user should see {string} button for {string}")
@@ -66,7 +71,7 @@ public class PostLoginHomePageStepDefinitions {
     }
 
     @Then("the user click on cart icon")
-    public void the_user_click_on_cart_icon() {
+    public void the_user_click_on_cart_icon() throws InterruptedException {
         dashboard.clickCartIcon();
 
     }

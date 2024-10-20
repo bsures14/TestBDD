@@ -7,9 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
+import static Utility.DriverManager.scrollToView;
+import static Utility.DriverManager.wait;
 import static Utility.Hooks.driver;
 
 public class PostLoginHomePage {
@@ -20,7 +23,7 @@ public class PostLoginHomePage {
     WebElement myCart;
 
     public PostLoginHomePage(WebDriver driver) {
-            PageFactory.initElements(driver, this); // Initialize PageFactory elements
+            PageFactory.initElements(driver, this);
         }
 
     public void verifyDashboardPage() {
@@ -34,6 +37,7 @@ public class PostLoginHomePage {
 
     public void verifylinkText(String linkName) {
         WebElement link=driver.findElement(By.xpath("//span[text()='"+linkName+"']//parent::a"));
+        scrollToView(link);
         Assert.assertTrue(link.isDisplayed());
     }
 
@@ -45,6 +49,7 @@ public class PostLoginHomePage {
     public void clickSection(String itemName) {
         List<WebElement> items=driver.findElements(By.xpath("//*[@id='narrow-by-list2']/dd/ol/li/a"));
         for(WebElement item:items) {
+            scrollToView(item);
             if(item.getText().equals(itemName)) {
                 item.click();
             }
@@ -59,6 +64,7 @@ public class PostLoginHomePage {
 
     public void clickOnFilter(String filter) {
         WebElement filterTitle=driver.findElement(By.xpath("//div[contains(@class, 'filter') and contains(text(), '"+filter+"')]"));
+        scrollToView(filterTitle);
         filterTitle.click();
     }
 
@@ -68,9 +74,9 @@ public class PostLoginHomePage {
     }
 
     public void checkItem(String itemName) {
-        WebElement item=driver.findElement(By.xpath("//img[@alt='"+itemName+"']"));
-        Actions action=new Actions(driver);
-        action.moveToElement(item);
+        WebElement item=driver.findElement(By.xpath("//img[@alt='"+itemName+"' and not(@data-bind)]"));
+        scrollToView(item);
+        item.isDisplayed();
     }
 
     public void checkCartButton(String button, String item) {
@@ -88,9 +94,17 @@ public class PostLoginHomePage {
         //addtoCartButton.click();
     }
 
-    public void clickCartIcon() {
-        myCart.click();
+    public void clickCartIcon() throws InterruptedException {
+        Thread.sleep(5000);
+        wait.until(ExpectedConditions.visibilityOf(myCart));
+        JavascriptExecutor js=(JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click();",myCart);
+    }
 
+    public void moveToItem(String itemName) {
+        WebElement item=driver.findElement(By.xpath("//img[@alt='"+itemName+"']"));
+        Actions action=new Actions(driver);
+        action.moveToElement(item);
     }
 }
 

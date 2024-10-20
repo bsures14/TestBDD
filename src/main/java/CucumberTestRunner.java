@@ -6,16 +6,16 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/main/resources/features", // Path to your feature files
-        glue = {"stepdefinitions","Utility"}, // Package containing your step definitions
+        features = "src/main/resources/features",
+        glue = {"stepdefinitions","Utility"},
         plugin = {
-                "pretty", // Console output format
-                "html:target/cucumber-reports.html", // HTML report
-                "json:target/cucumber.json" // JSON report
+                "pretty",
+                "html:target/cucumber-reports.html",
+                "json:target/cucumber.json"
         },
-        monochrome = true, // Readable console output
-        dryRun = false, // If true, checks if mappings are correct without executing tests
-        tags = "@PurchaseMetalWatch" // Run specific scenarios with a tag
+        monochrome = false,
+        dryRun = false,
+        tags = "@PurchaseMetalWatch"
 )
 public class CucumberTestRunner {
         @BeforeClass

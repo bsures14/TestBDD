@@ -25,32 +25,52 @@ Feature: Successfully Purchasing a Metal Watch
   Then the user should see the "Watches" header
   When the user clicks on "Material" filter
   Then the user clicks on the "Metal " link on filer
+    And the user should see "Didi Sport Watch"
   When the user mouseover "Didi Sport Watch" item
   Then the user should see "Add to Cart" button for "Didi Sport Watch"
   Then the user click on "Add to Cart" button for "Didi Sport Watch"
   Then the user click on cart icon
+  And the user should see the "Proceed to Checkout" Button
+  And the user should see the "Edit item" icon
+  And the user should see the "Remove item" icon
+  And the user clicks on the "Edit item" icon
+    And the user should see the "Update Cart" Button
+    And the user should see the "Qty" Textbox
+    And user enters "2" in quantity textbox
+    And the user clicks on the "Update Cart" button
+    And user should see "updated in your shopping cart." message
+    And the user should see order summery in checkout cart
+    And the user should see the cart total table in checkout cart
+    And the user should "Subtotal" as "$184.00" in table
+   And the user should "Order Total" as "$184.00" in table
+    And the user should see "Didi Sport Watch"
+    And the user should see the Proceed to Checkout Button
+    And the user clicks on the Proceed to Checkout button
+  And the user should see checkout page
+  And the user should see Order Summary
+  And the user should see the ShippingAddress
+  And the user should fill the Address details
+      | field           | value             |
+      | firstname       | Suresh             |
+      | lastname        | Bandi          |
+      | company         | Test          |
+      | street[0]       | 123 ABC                   |
+      | street[1]      |RoadNumber1                   |
+      | street[2]       |Villas                    |
+      |Country            | India                |
+      |State               | Telangana            |
+      |city                |Hyderabad             |
+      |postcode          |502032              |
+      | telephone   | 9995550030         |
+    And the user clicks on the "Next" button
+    And the use should see paymentMethod
+    And the user should see Order Summary
+    And the user should "Cart Subtotal" as "$184.00" in table
+    And the user should "Shipping" as "$10.00" in table
+    And the user should "Order Total" as "$194.00" in table
+    And the user should see "2" items in cart
+    And the user should see the "Place Order" Button
+    And the user clicks on the "Place Order" button
+    Then the user see "Thank you for your purchase!"
+    And the user see the orderid
 
-
-#
-#    When the user selects a metal watch from the listings
-#    And the user should see the watch details page with the correct product information
-#    And the user clicks the "Add to Cart" button
-#    Then a confirmation message "You added [Watch Name] to your shopping cart." should be displayed
-#
-#    When the user proceeds to the checkout page
-#    Then the user should see the cart summary with the correct item details
-#    And the user clicks the "Checkout" button
-#    And the user fills in the shipping information
-#      | Field           | Value                 |
-#      | Full Name       | John Doe             |
-#      | Address         | 123 Main St          |
-#      | City            | Springfield          |
-#      | State           | IL                   |
-#      | Zip Code        | 62701                |
-#      | Phone Number    | 555-123-4567         |
-#    And the user clicks the "Continue" button
-#    And the user selects the payment method
-#    And the user enters payment details
-#    And the user clicks the "Place Order" button
-#    Then the user should see a confirmation message "Thank you for your purchase!"
-#    And the order ID should be displayed for future reference

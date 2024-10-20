@@ -12,13 +12,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.net.IDN;
 
+import static Utility.DriverManager.scrollToView;
 import static Utility.DriverManager.wait;
 import static Utility.Hooks.driver;
 
 public class LoginPage {
 
     public LoginPage(WebDriver driver) {
-        PageFactory.initElements(Hooks.driver, this); // Initialize PageFactory elements
+        PageFactory.initElements(Hooks.driver, this);
     }
 
     @FindBy(xpath = "//*[@title='Email']")
@@ -35,8 +36,7 @@ public class LoginPage {
     }
 
     public void verifyFields(String field,String type) {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", emailtextbox);
+        scrollToView(emailtextbox);
         if(field.equals("Email")) {
             emailtextbox.isDisplayed();
         }
