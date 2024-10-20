@@ -39,8 +39,8 @@ public class CheckOutCartPageStepDefinitons {
        checkoutCartPage.checkCartTotalTable();
     }
 
-    @Then("the user should {string} as {string} in table")
-    public void the_user_should_as_in_table(String row, String value) {
+    @Then("the user should see {string} as {string} in table")
+    public void the_user_should_see_as_in_table(String row, String value) {
         checkoutCartPage.checkValue(row,value);
     }
     @Then("the user should see the Proceed to Checkout Button")
