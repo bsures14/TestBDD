@@ -16,7 +16,7 @@ public class PreLoginHomePage {
     private WebElement signInLink;
 
     public PreLoginHomePage(WebDriver driver) {
-        PageFactory.initElements(Hooks.driver, this); // Initialize PageFactory elements
+        PageFactory.initElements(Hooks.driver, this);
     }
 
     public void openPage() {

@@ -1,6 +1,8 @@
 package Utility;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -40,7 +42,7 @@ public class DriverManager {
     }
 
     private static WebDriver setupChromeDriver() {
-        WebDriverManager.chromedriver().setup(); // Ensure this line is working
+        WebDriverManager.chromedriver().setup(); F
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
@@ -49,7 +51,7 @@ public class DriverManager {
     }
 
     private static WebDriver setupFirefoxDriver() {
-        WebDriverManager.firefoxdriver().setup(); // Ensure this line is working
+        WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
         options.addPreference("dom.webnotifications.enabled", false);
         return new FirefoxDriver(options);
@@ -61,5 +63,10 @@ public class DriverManager {
             driver.quit();
             driver = null;
         }
+    }
+
+    public static void scrollToView(WebElement element) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }
