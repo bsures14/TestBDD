@@ -1,4 +1,4 @@
-@PurchaseMetalWatch
+@PurchaseMetalWatch @All
 Feature: Successfully Purchasing a Metal Watch
 
   As a registered user of the Magento store
@@ -73,4 +73,3 @@ Feature: Successfully Purchasing a Metal Watch
     And the user clicks on the "Place Order" button
     Then the user see "Thank you for your purchase!"
     And the user see the orderid
-
