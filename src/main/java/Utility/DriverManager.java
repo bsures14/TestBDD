@@ -42,7 +42,7 @@ public class DriverManager {
     }
 
     private static WebDriver setupChromeDriver() {
-        WebDriverManager.chromedriver().setup(); F
+        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
