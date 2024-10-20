@@ -13,9 +13,9 @@ import org.junit.runner.RunWith;
                 "html:target/cucumber-reports.html",
                 "json:target/cucumber.json"
         },
-        monochrome = false,
+        monochrome = true,
         dryRun = false,
-        tags = "@PurchaseMetalWatch"
+        tags = "@All"
 )
 public class CucumberTestRunner {
         @BeforeClass

@@ -23,4 +23,24 @@ public class preloginhomepage_stepDefinitions {
     public void the_user_clicks_on_the_link(String linkname) throws InterruptedException {
         homePage.clicklink(linkname);
     }
+
+    @Then("the user should see error message for {string} as {string}")
+    public void the_user_should_see_error_message_for_as(String field, String message) {
+        homePage.verifyErrorMessage(field,message);
+    }
+
+    @When("the user enters {string} as {string}")
+    public void the_user_enters_as(String field, String value) {
+        homePage.enterValue(field,value);
+    }
+
+    @Then("the user clears the {string} field")
+    public void the_user_clears_the_field(String fieldName) {
+       homePage.clearField(fieldName);
+    }
+
+    @Then("the user should see invalid login error message as {string}")
+    public void the_user_should_see_invalid_login_error_message_as(String message) {
+        homePage.verifyInvalidLoginMessage(message);
+    }
 }

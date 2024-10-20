@@ -2,6 +2,7 @@ package Utility;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -18,20 +19,18 @@ public class Hooks {
     }
 
     @After
-    public void takeScreenShot() {
+    public void tearDown(Scenario scenario) {
+        String scenarioName = scenario.getName().replaceAll(" ", "_");
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
-        File file = new File("target/screenshot.png");
+        File file = new File("target/"+scenarioName+"+_screenshot.png");
         try {
             FileHandler.copy(srcFile, file);
             System.out.println("Screenshot saved: " + file.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
-    @After
-    public void quitDriver() {
         DriverManager.quitDriver();
     }
 }
