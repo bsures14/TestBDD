@@ -18,7 +18,7 @@ public class CheckoutCartPage {
     @FindBy(xpath = "//input[@id='qty']")
     WebElement quantitytextbox;
 
-    @FindBy(xpath ="//div[contains(@class,'message-success')]//div")
+    @FindBy(xpath ="//div[contains(@class,'message-')]//div")
     WebElement successMessage;
 
     @FindBy(xpath = "//strong[@class='summary title']")
@@ -57,6 +57,7 @@ public class CheckoutCartPage {
     public void verifyMessage(String message) {
         scrollToView(successMessage);
         String actualmessage=successMessage.getText();
+        System.out.println(actualmessage);
         Assert.assertTrue(actualmessage.contains(message));
     }
 

@@ -46,7 +46,7 @@ public class ItemCheckOutPage {
     WebElement shippingAddress;
 
     public void fillAddressDetails(DataTable dataTable) {
-        if(!shippingAddress.isDisplayed()) {
+        if(!shippingAddress.isDisplayed()) {//if addreess is pre populated it will ignore below steps
             List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
             System.out.println(data);
             for (int i = 0; i < data.size(); i++) {
@@ -96,7 +96,9 @@ public class ItemCheckOutPage {
     }
 
     public void verifyPage() {
-        Assert.assertEquals("Checkout", driver.getTitle());
+        wait.until(ExpectedConditions.visibilityOf(orderSummeryLabel));
+        Assert.assertEquals("Checkout",driver.getTitle() );
+
     }
 
     public void checkItemCount(String count) {
